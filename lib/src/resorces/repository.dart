@@ -7,11 +7,11 @@ class Repository {
   NewsDbProvider dbProvider = NewsDbProvider();
   NewsApiProvider apiProvider = NewsApiProvider();
 
-  Future<List<int>> fetchTopId() {
+  Future<List<int>> fetchTopIds() {
     return apiProvider.fetchTopIds();
   }
 
-  Future<ItemModel> fetchItems(int id) async {
+  Future<ItemModel> fetchItem(int id) async {
     var item = await dbProvider.fetchItem(id);
     if (item != null) {
       return item;
@@ -20,4 +20,14 @@ class Repository {
     dbProvider.addItem(item);
     return item;
   }
+}
+
+
+abstract class Source {
+  Future<List<int>> fetchTopIds();
+  Future<ItemModel> fetchItem(int id);
+}
+
+abstract class Cache{
+  Future<int> addItem(ItemModel item);
 }

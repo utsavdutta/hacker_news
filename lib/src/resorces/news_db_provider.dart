@@ -1,3 +1,4 @@
+import 'package:hackernews/src/resorces/repository.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -5,7 +6,7 @@ import 'package:path/path.dart';
 import 'dart:async';
 import '../model/item_model.dart';
 
-class NewsDbProvider {
+class NewsDbProvider implements Cache{
   Database db;
 
   void init() async {
